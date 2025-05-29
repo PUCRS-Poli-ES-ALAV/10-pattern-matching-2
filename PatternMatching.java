@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class PatternMatching {
 
     static int e1(String s1, String s2) {
@@ -31,15 +34,22 @@ public class PatternMatching {
 
         for (int i = 0; i <= N - M; i++) {
             long txtHash = hash(txt.substring(i, i+M), M);
-            if (patHash == txtHash)
+            if (patHash == txtHash) {
                 return i; // ocorrência? colisão?
+            }
         }
         return N; // nenhuma ocorrência
     }
 
     public static void main(String[] args) {
-        String s1 = "ABCDCBDCBDACBDABDCBADF";
-        String s2 = "ADF";
-        System.out.println(e2(s1, s2));
+        var rng = new Random();
+        var s1 = new StringBuilder(500000);
+        for (int i = 0; i < 500000; i++) {
+            s1.append((char)(rng.nextInt(26) + 'A'));
+        }
+
+        String s2 = "AAAA";
+
+        System.out.println(e2(s1.toString(), s2));
     }
 }
